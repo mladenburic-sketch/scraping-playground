@@ -64,10 +64,12 @@ def load_csv_file(
                     section_headers = ["Aktiva", "Obaveze", "Kapital"]
                     df = df[~df[first_col].isin(section_headers)]
                     
-                    # Preimenuj AKTIVA kolonu u Amount pre nego što preimenujemo prvu kolonu u Pozicija
-                    # (ako postoji kolona 'AKTIVA' sa velikim slovima koja sadrži iznose)
+                    # Preimenuj AKTIVA ili IZNOS kolonu u Amount pre nego što preimenujemo prvu kolonu u Pozicija
+                    # (ako postoji kolona 'AKTIVA' ili 'IZNOS' koja sadrži iznose)
                     if 'AKTIVA' in df.columns:
                         df = df.rename(columns={'AKTIVA': 'Amount'})
+                    elif 'IZNOS' in df.columns:
+                        df = df.rename(columns={'IZNOS': 'Amount'})
                     
                     df = df.rename(columns={first_col: "Pozicija"})
                 
@@ -89,9 +91,11 @@ def load_csv_file(
             section_headers = ["Aktiva", "Obaveze", "Kapital"]
             df = df[~df[first_col].isin(section_headers)]
             
-            # Preimenuj AKTIVA kolonu u Amount pre nego što preimenujemo prvu kolonu u Pozicija
+            # Preimenuj AKTIVA ili IZNOS kolonu u Amount pre nego što preimenujemo prvu kolonu u Pozicija
             if 'AKTIVA' in df.columns:
                 df = df.rename(columns={'AKTIVA': 'Amount'})
+            elif 'IZNOS' in df.columns:
+                df = df.rename(columns={'IZNOS': 'Amount'})
             
             df = df.rename(columns={first_col: "Pozicija"})
         
@@ -219,12 +223,15 @@ def main():
             )
             df["balance_date"] = temp_date + pd.offsets.MonthEnd(0)
             df = df[df["balance_date"].dt.year >= 2020]
-            # Preimenuj AKTIVA kolonu u Amount (iznosi su u AKTIVA koloni)
-            # Proveri obe varijante: 'AKTIVA' (sve veliko) i 'Aktiva' (prvo veliko)
-            if 'AKTIVA' in df.columns:
-                df = df.rename(columns={'AKTIVA': 'Amount'})
-            elif 'Aktiva' in df.columns:
-                df = df.rename(columns={'Aktiva': 'Amount'})
+            # Preimenuj AKTIVA, IZNOS ili Aktiva kolonu u Amount (iznosi su u jednoj od ovih kolona)
+            # Proveri sve varijante: 'AKTIVA' (sve veliko), 'Aktiva' (prvo veliko), 'IZNOS'
+            if 'Amount' not in df.columns:
+                if 'AKTIVA' in df.columns:
+                    df = df.rename(columns={'AKTIVA': 'Amount'})
+                elif 'IZNOS' in df.columns:
+                    df = df.rename(columns={'IZNOS': 'Amount'})
+                elif 'Aktiva' in df.columns:
+                    df = df.rename(columns={'Aktiva': 'Amount'})
             df = df.fillna({'Amount': 0})
             #st.dataframe(df)
 
@@ -241,13 +248,17 @@ def main():
 
         # Korak 1: Učitaj sve kategorije umesto samo jedne
         if df is not None and "Pozicija" in df.columns:
-            # Debug: prikaži dostupne kolone
+            # Osiguraj da Amount kolona postoji (ako nije već preimenovana)
             if 'Amount' not in df.columns:
-                st.warning(f"Amount kolona ne postoji. Dostupne kolone: {df.columns.tolist()}")
                 # Pokušaj da pronađeš kolonu sa iznosima
                 if 'IZNOS' in df.columns:
                     df['Amount'] = df['IZNOS']
-                    st.info("Koristim IZNOS kolonu kao Amount")
+                elif 'AKTIVA' in df.columns:
+                    df['Amount'] = df['AKTIVA']
+                elif 'Aktiva' in df.columns:
+                    df['Amount'] = df['Aktiva']
+                else:
+                    st.warning(f"Amount kolona ne postoji. Dostupne kolone: {df.columns.tolist()}")
             
             # Korak 2: Učitaj sve kategorije i dodaj kolonu 'Kategorija'
             all_categories_data = []
