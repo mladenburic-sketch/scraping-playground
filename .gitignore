@@ -208,6 +208,8 @@ __marimo__/
 
 # Project-specific
 # Podaci i konfiguracija
-data/
+# Ignore data folder but allow CSV files from 2020+ for Streamlit deployment
+data/bankecg_izvestaji/
 output/
 certs/
+# Allow CSV files in csv_output (will be added with -f flag for files >= 2020)
