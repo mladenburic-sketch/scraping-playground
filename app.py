@@ -364,7 +364,6 @@ def main():
             # Korak 3: Kombinuj sve kategorije u jedan DataFrame
             if all_categories_data:
                 df_aggregated = pd.concat(all_categories_data, ignore_index=True)
-                st.dataframe(df_aggregated)
             else:
                 st.warning("Nema podataka za prikaz grafikona.")
                 df_aggregated = pd.DataFrame(columns=['balance_date', 'Amount', 'Kategorija'])
