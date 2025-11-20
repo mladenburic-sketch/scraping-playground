@@ -190,13 +190,15 @@ def main():
         #    help="Filtriraj CSV fajlove po imenu"
         #)
         
-        # Filtriraj fajlove
-        filtered_files = csv_files
-        #if search_term:
-        #    filtered_files = [
-        #        f for f in csv_files
-        #        if search_term.lower() in str(f).lower()
-        #    ]
+        # Filtriraj fajlove - samo oni iz 2020+ (format mmyy* gdje yy >= 20)
+        filtered_files = []
+        for f in csv_files:
+            file_name = f.name
+            # Provjeri da li fajl ima format mmyy* (npr. 1220nik_bs.csv)
+            if len(file_name) >= 4 and file_name[:4].isdigit():
+                yy = int(file_name[2:4])  # Uzmi poslednje 2 cifre (godina)
+                if yy >= 20:  # 2020 ili novije
+                    filtered_files.append(f)
         
         #st.info(f"Prikazano: {len(filtered_files)} fajlova")
 
