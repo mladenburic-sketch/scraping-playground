@@ -1,0 +1,23 @@
+POZICIJA,IZNOS
+1. Prihodi od kamata i slicni prihodi,"7,438"
+2. Rashodi od kamata i slicni rashodi,"3,303"
+3. NETO PRIHODI OD KAMATA (1- 2),"4,135"
+4. Prihodi od dividendi,
+5. Troskovi obezvrjedjenja,108
+6. Troskovi rezervisanja,-63
+7. Prihodi od naknada i provizija,"1,254"
+8. Rahodi naknada i provizija,540
+9. NETO PRIHODI OD NAKNADA I PROVIZIJA (7- 8),714
+10. Neto dobici / gubici od finansijskih instrumenata koji se drze za trgovinu,
+11. Neto dobici / gubici od finansijskih instrumenata koji se vode po fer vrijednosti kroz Bilans uspjeha,
+12. Neto dobici / gubici od investicionih HOV,41
+13. Promjena fer vrijednosti u racunovodstvu zastite od rizika (hedzing),
+14. Neto gubici/dobici od kursnih razlika,19
+15. Troskovi zaposlenih,"2,448"
+16. Opsti i administrativni troskovi,"1,950"
+17. Troskovi amortizacije,240
+18. Ostali rashodi,26
+19. Ostali prihodi,"1,461"
+20. OPERATIVNI PROFIT (3+4-5-6+9+10+11+12+13+14-15-16-17-18+19),"1,662"
+21. Porez na prihod,
+22. NETO PROFIT/GUBITAK (20 - 21),"1,662"

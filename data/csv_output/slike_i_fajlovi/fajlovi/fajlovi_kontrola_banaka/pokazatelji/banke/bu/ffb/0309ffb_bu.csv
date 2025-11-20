@@ -1,0 +1,47 @@
+,POZICIJA,IZNOS
+PR 1.,Prihodi od kamata,107
+,1) Depoziti,2
+,2) Hartije od vrijednosti kupljene po ugovoru o ponovnoj prodaji,
+,3) Krediti i poslovi lizinga,104
+,4) Hartije od vrijednosti koje se drze do dospijeca,
+,5) Ostali prihodi od kamata,
+RA 1.,Rashodi kamata,54
+,1) Depoziti,39
+,2) HoV prodate uz obavezu ponovnog otkupa,
+,3) Uzete pozajmice - dospjele obaveze,
+,4) Obaveze po uzetim kreditima i ostalim pozajmicama,
+,5) Subordinisani dugovi I hibridni instrumenti,15
+,6) Ostali rashodi po kamatama,
+I.,NETO PRIHODI/RASHODI OD KAMATA (PR.1. - RA.1.),53
+II.,Troskovi za gubitke po stavkama aktive,72
+III.,NETO PRIHODI / RASHODI (I-II),-19
+PR 2.,Prihodi od naknada,29
+,1) Naknade po kreditima,14
+,2) Naknade po vanbilansnim poslovima,1
+,3) Naknade za izvrsene usluge,14
+,4) Ostale naknade,0
+RA 2.,Rashodi od naknada,19
+,1) Naknade po kreditima,
+,2) Naknade po vanbilansnim poslovima,
+,3) Naknade za izvrsene usluge,15
+,4) Ostale naknade,3
+IV.,NETO PRIHODI / RASHODI OD NAKNADA (PR 2. - RA 2.),10
+V.,NETO PRIHODI / RASHODI OD KAMATA I NAKNADA ( III+IV),-9
+PR 3.,Ostali prihodi,-4
+,1) Prihodi iz poslovanja sa devizama (neto),0
+,2) Ponovna procjena prihoda/gubitaka iz poslovanja sa devizama (revalorizacija),-4
+,3) Prihodi po osnovu trgovine hartija od vrijednosti (neto) i dobici/gubici hartija od vrijednosti raspolozivih za prodaju i onih koje se drze do dospijeca (ukljucujuci ulaganja u kapital),
+,"4) Prihodi po osnovu trgovanja (neto) derivatima futures-forward, opcije,swap,drugim derivatima, trgovanja devizama spot-transakcije, i po osnovu kamatnih Swopova",
+,5) Neto gubici/dobici od kastodi poslova,
+,6) Ostali prihodi,
+RA 3.,Opsti i ostali troskovi,439
+,1) Troskovi plata,190
+,2) Troskovi poslovnog prostora i fiksne aktive,147
+,3) Ostali troskovi,101
+VI.,NETO PRIHODI / RASHODI PRIJE VANREDNIH STAVKI (V.+ PR3-RA3),-452
+PR 4.,Vanredni prihodi,
+RA 4.,Vanredni rashodi,
+VII.,NETO OSTALI VANREDNI PRIHODI I RASHODI (PR 4. - RA 4.),
+VIII.,NETO PRIHODI / RASHODI POSLE VANREDNIH STAVKI (VI+VII),-452
+RA 5.,Porezi i doprinosi iz dobitka,
+IX.,NETO DOBITAK / GUBITAK (VIII- RA 5.),-452

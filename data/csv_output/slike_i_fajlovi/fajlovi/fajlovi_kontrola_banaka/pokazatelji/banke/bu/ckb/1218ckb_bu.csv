@@ -1,0 +1,25 @@
+POZICIJA,IZNOS
+1. Prihodi od kamata i slicni prihodi,"24,522"
+2. Prihodi od kamata na obezvrijedene plasmane,
+3. Rashodi od kamata i slicni rashodi,274
+I. NETO PRIHODI OD KAMATA (1 + 2 - 3),"24,248"
+4. Prihodi od naknada i provizija,"15,718"
+5. Rashodi naknada i provizija,"7,905"
+II. NETO PRIHODI OD NAKNADA I PROVIZIJA (4 - 5),"7,813"
+6. Neto dobitak / gubitak usled prestanka priznavanja finansijske instrumenata koji se ne vrednuju po fer vrijednosti kroz bilans uspjeha,
+7. Neto dobitak/gubitak po osnovu finansijskih instrumenata koji se drze radi trgovanja,
+"8. Neto dobitak / gubitak od finansijskih instrumenata iskazanih po fer vrijednosti kroz bilans uspjeha, a koji se ne drze radi trgovanja",
+9. Promjena fer vrijednosti u racunovodstvu zastite od rizika (hedzing),
+10. Neto gubici/dobici od kursnih razlika,844
+11. Neto dobitak/gubitak po osnovu prestanka priznavanja ostale imovine,57
+12. Ostali prihodi,"4,486"
+13. Troskovi zaposlenih,"12,493"
+14. Troskovi amortizacije,"2,547"
+15. Opsti i administrativni troskovi,"7,051"
+16. Neto dobici/gubici po osnovu modifikacije i reklasifikacije finansijskih instrumenata,
+17. Neto prihodi/rashodi po osnovu obezvredjenja finansijskih instrumenata koji se ne vrednuju po fer vrednosti kroz bilans uspjeha,"4,033"
+18. Troskovi rezervisanja,42
+19. Ostali rashodi,178
+III. DOBITAK/GUBITAK PRE OPOREZIVANJA : I+II+6+7+8+9+10+11+12-13-14-15-16-17-18-19,"11,103"
+21. Porez na dobit,"1,024"
+22. NETO PROFIT/GUBITAK (III - 21),"10,079"

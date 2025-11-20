@@ -1,0 +1,45 @@
+,POZICIJA,IZNOS
+PR 1.,Prihodi od kamata,"9,960"
+,1) Depoziti,524
+,2) Hartije od vrijednosti kupljene po ugovoru o ponovnoj prodaji,
+,3) Krediti i lizing,"9,377"
+,4) Hartije od vrijednosti koje se drze do dospijeca,6
+,5) Ostali prihodi od kamata,52
+RA 1.,Rashodi kamata,"1,957"
+,1) Depoziti,992
+,2) Hartije od vrijednosti prodate po ugovoru o rekupovini,
+,3) Obaveze po uzetim kreditima i ostalim pozajmicama,
+,4) Ostale pozajmice - dospjele obaveze,948
+,5) Subordinisani dugovi,
+,6) Ostali rashodi po kamatama,17
+I.,NETO PRIHODI/RASHODI OD KAMATA (PR.1.-RA.1.),"8,003"
+II.,Troskovi za gubitke,803
+III.,NETO PRIHODI / RASHODI (I-II),"7,201"
+PR 2.,Prihodi od naknada,"1,673"
+,1) Naknade po kreditima,870
+,2) Naknade po vanbilansnim poslovima,12
+,3) Naknade za izvrsene usluge,762
+,4) Ostale naknade,29
+RA 2.,Rashodi od naknada,745
+,1) Naknade po kreditima,74
+,2) Naknade po vanbilansnim poslovima,
+,3) Naknade za izvrsene usluge,523
+,4) Ostale naknade,148
+IV.,NETO PRIHODI / RASHODI OD NAKNADA (PR 2. - RA 2.),929
+V.,NETO PRIHODI / RASHODI OD KAMATA I NAKNADA ( III+IV),"8,129"
+PR 3.,Ostali prihodi,288
+,1) Prihodi iz poslovanja sa devizama (neto),1
+,2) Prihodi iz kursnih razlika ( revalorizacija ),36
+,3) Prihodi po osnovu trgovine hartija od vrijednosti - neto dobitak / gubitak od hartija koje su raspolozive za prodaju ili se drze do dospijeca,
+,4) Ostali prihodi,251
+RA 3.,Opsti troskovi,"5,702"
+,1) Troskovi plata i doprinosa,"2,773"
+,2) Troskovi poslovnog prostora i fiksne aktive,"1,014"
+,3)Ostali troskovi,"1,915"
+VI.,NETO PRIHODI / RASHODI PRIJE VANREDNIH STAVKI (V.+ PR3 - RA3),"2,715"
+PR 4.,Vanredni prihodi,
+RA 4.,Vanredni rashodi,
+VII.,NETO OSTALI VANREDNI PRIHODI I RASHODI (PR 4. - RA 4.),
+VIII.,NETO PRIHODI / RASHODI POSLIJE VANREDNIH STAVKI (VI - VII),"2,715"
+RA 5.,Porezi i doprinosi iz dobitka,304
+IX.,NETO DOBITAK / GUBITAK (VIII - RA 5.),"2,411"

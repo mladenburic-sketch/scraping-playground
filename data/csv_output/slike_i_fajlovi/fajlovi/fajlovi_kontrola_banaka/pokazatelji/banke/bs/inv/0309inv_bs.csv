@@ -1,0 +1,51 @@
+R. br.,Aktiva,IZNOS
+1.,Novcana sredstva i racuni depozita kod depozitnih institucija,"2,904"
+1.a.,Novcana sredstva i nekamatonosni racuni depozita,"2,043"
+1.b.,Kamatonosni racuni depozita,861
+1.c.,Sredstva klijenata iz kastodi poslova,
+2.,"Aktiva za trgovinu i aktiva raspoloziva za prodaju, izuzev akcija","1,200"
+2.a.,"Aktiva za trgovinu, izuzev akcija",
+2.b.,"Aktiva raspoloziva za prodaju, izuzev akcija","1,200"
+2.c.,"Derivatna, fin. imovina koja se drzi radi trgovanja",
+2.d.,"Derivatna, fin. imovina koja se koristi kao instrument zastite (fer vrijednost derivata)",
+3.,Hartije od vrijednosti kupljenje po ugovoru o ponovnoj prodaji,
+4.,Krediti i poslovi lizinga,"10,198"
+4.a.,Minus: Rezerve za kreditne gubitke,354
+4.b.,"Krediti i poslovi lizinga, neto rezerve za gubitke","9,844"
+5.,Hartije od vrijednosti koje se drze do dospijeca,100
+6.,Faktoring i Forfeting,
+7.,Potrazivanja iz kastodi poslova,
+8.,Poslovni prostor i ostala fiksna aktiva,681
+9.,Stecena aktiva,581
+10.,Ulaganja u kapital drugih pravnih lica,"5,702"
+11.,Ostala aktiva,489
+12.,MINUS: Rezerve za gubitke na ostalu aktivu (osim pozicije 4.a),169
+13.,UKUPNA AKTIVA:,"21,331"
+R. br.,Obaveze,IZNOS
+14.,Depoziti,"5,271"
+14.a.,Nekamatonosni depoziti,"4,408"
+14.b.,Kamatonosni depoziti,863
+15.,Hartije od vrijednosti prodate po ugovoru o rekupovini,
+16.,Obaveze po osnovu kastodi poslova,
+17.,Obaveze po kreditima i pozajmicama,74
+17.a.,Kratkorocne pozajmice - manje od jedne godine,
+17.b.,Dugorocne pozajmice - preko jedne godine,
+18.,Obaveze prema Vladi,659
+19.,Ostale pozajmice - dospjele obaveze,
+19.a.,Dospjele obaveze,
+19.b.,Stanje neizmirenih - pozvanih za placanje vanbilansnih obaveza,
+20.,Derivatne finansijske obaveze koje se drze do dospijeca (fer vrijednost),
+21.,Derivatne finansijske obaveze koje se koriste kao instrument zastite (fer vrijednost),
+22.,Ostale obaveze,89
+23.,Rezerve za kreditne gubitke po vanbilansnim kreditnim izlozenostima,75
+24.,Subordinisani dug i hibridni instrumenti,
+25.,UKUPNE OBAVEZE,"6,168"
+26.,MANJINSKO UCESCE AKCIONARA,
+R. br.,Kapital,IZNOS
+27.,Povlascene akcije,"6,277"
+28.,Obicne akcije,"6,217"
+29.,Emisione premije,2
+30.,Nerasporedjena dobit/gubitak,-128
+31.,Ostali kapital,"2,796"
+32.,UKUPAN KAPITAL: (27. do 31.),"15,163"
+33.,UKUPNA PASIVA: (25. + 26. + 32. ),"21,331"

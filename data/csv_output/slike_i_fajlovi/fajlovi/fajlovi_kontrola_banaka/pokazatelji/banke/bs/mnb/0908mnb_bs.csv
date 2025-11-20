@@ -1,0 +1,45 @@
+R. br.,AKTIVA,IZNOS
+1.,Novcana sredstva i racuni depozita kod depozitnih institucija,"71,718"
+1.a.,Gotov novac i nekamatonosni racuni depozita,"44,327"
+1.b.,Kamatonosni racuni depozita,"27,391"
+2.,"Aktiva za trgovinu i raspoloziva za prodaju, izuzev akcija","1,495"
+2.a.,HoV za trgovinu,
+2.b.,HoV raspolozive za prodaju,"1,495"
+3.,Hartije od vrijednosti kupljene po ugovoru o ponovnoj prodaji,
+4.,Krediti i poslovi lizinga,"385,373"
+4.a.,Manje:Rezerve za kreditne gubitke,"11,556"
+4.b.,Neto krediti i poslovi lizinga,"373,817"
+5.,Hartije od vrijednosti koje se drze do dospijeca,0
+6.,Poslovni prostor i ostala fiksna aktiva,"6,195"
+7.,Stecena aktiva,242
+8.,Ulaganja u kapital drugih pravnih lica,222
+9.,Ostala aktiva,"14,723"
+10.,MINUS:Rezerve za potencijalne gubitke na ostalu aktivu (osim pozicije 4.a),432
+11.,UKUPNA AKTIVA:,"467,981"
+R. br.,PASIVA,iznos
+iznos,,
+R. br.,OBAVEZE,IZNOS
+12.,Depoziti,"326,341"
+12.a.,Nekamatonosni depoziti,"6,773"
+12.b.,Kamatonosni depoziti,"319,568"
+13.,Hartije od vrijednosti prodate po ugovoru o rekupovini,
+14.,Obaveze po uzetim kreditima i pozajmicama,"95,977"
+14.a.,Kratkorocne - do jedne godine,"20,343"
+14.b.,Dugorocne - preko jedne godine,"75,634"
+15.,Obaveze prema Vladi,"1,011"
+16.,Ostale pozajmice - dospjele obaveze,
+16.a.,Dospjele obaveze,
+16.b.,Stanje neizmirenih - pozvanih za placanje vanbilansnih obaveza,
+17.,Ostale obaveze,"11,380"
+18.,Rezerve za potencijalne kreditne gubitke po vanbilansnim izlozenostima,"2,623"
+19.,Subordinisani dugovi,
+20.,UKUPNE OBAVEZE:,"437,332"
+21.,Manjinsko ucesce akcionara,
+R. br.,KAPITAL,IZNOS
+22.,Povlascene akcije,
+23.,Obicne akcije,"8,194"
+24.,Emisione premije,"3,476"
+25.,Nerasporedjena dobit/gubitak,"11,051"
+26.,Ostali kapital,"7,928"
+27.,UKUPAN KAPITAL: (22. do 26.),"30,649"
+28.,UKUPNA PASIVA: (20. + 21. + 27. ),"467,981"

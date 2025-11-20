@@ -1,0 +1,72 @@
+Aktiva,IZNOS
+1. Novcana sredstva i racuni depozita kod centralnih banaka,"53,965"
+2. Finansijska sredstva po amortizovanoj vrijednosti,"205,570"
+2.a. Krediti i potrazivanja od banaka,"10,115"
+2.b. Krediti i potrazivanja od klijenata,"195,452"
+2.c. Hartije od vrijednosti,
+2.d. Ostala finansijska sredstva,3
+3. Finansijska sredstva po fer vrijednosti kroz ostali ukupni rezultat,
+3.a. Krediti i potrazivanja od banaka,
+3.b. Krediti i potrazivanja od klijenata,
+3.c. Hartije od vrijednosti,
+3.d. Ostala finansijska sredstva,
+4. Finansijska sredstva koja se drze radi trgovanja,
+4.a. Krediti i potrazivanja od banaka,
+4.b. Krediti i potrazivanja od klijenata,
+4.c. Hartije od vrijednosti,
+4.d. Ostala finansijska sredstva,
+"5. Finansijska sredstva koja se vrednuju po fer vrijednosti kroz bilans uspjeha, koja se ne drze radi trgovanja",
+5.a. Krediti i potrazivanja od banaka,
+5.b. Krediti i potrazivanja od klijenata,
+5.c. Hartije od vrijednosti,
+5.d. Ostala finansijska sredstva,
+6. Derivati koji se drze zbog zastite od rizika,
+7. Promjene u fer vrijednsti stavki koje su predmet zastite od rizika,
+"8. Investicije u pridruzena drustva, zavisna drustva i zajednicke poduhvate po metodi kapitala",
+9. Investicione nekretnine,
+"10. Nekretnine, postrojenja i oprema","1,450"
+11. Nematerijalna sredstva,571
+12. Tekuca poreska sredstva,
+13. Odlozena poreska sredstva,
+14. Stalna sredstva namijenjena prodaji i sredstva poslovanja koje se obustavlja,
+15. Ostala sredstva,897
+16. UKUPNA SREDSTVA:,"262,453"
+Obaveze,IZNOS
+17. Finansijske obaveze koje se iskazuju po amortizovanoj vrijednosti,"233,073"
+17.a. Depoziti banaka i centralnih banaka,
+17.b. Depoziti klijenata,"203,995"
+17.c. Krediti banaka i centralnih banaka,"19,079"
+17.d. Krediti klijenata koji nijesu banke,"9,999"
+17.e. Hartije od vrijednosti,
+17.f. Ostale finansijske obaveze,
+18. Finansijske obaveze koje se drze radi trgovanja,
+18.a. Depoziti banaka i centralnih banaka,
+18.b. Depoziti klijenata,
+18.c. Krediti banaka i centralnih banaka,
+18.d. Krediti klijenata koji nijesu banke,
+18.e. Hartije od vrijednosti,
+18.f. Ostale finansijske obaveze,
+19. Finansijske obaveze kojima se ne trguje i koje se vrednuju po fer vrijednosti kroz bilans uspjeha,
+19.a. Depoziti banaka i centralnih banaka,
+19.b. Depoziti klijenata,
+19.c. Krediti banaka i centralnih banaka,
+19.d. Krediti klijenata koji nijesu banke,
+19.e. Ostale finansijske obaveze,
+20. Derivatne finansijske obaveze kao instrument zastite,
+21. Promjene fer vrijednosti stavki koje su predmet zastite od rizika,
+22. Rezerve,"1,198"
+23. Obaveze po osnovu sredstava namijenjenih prodaji i sredstva poslovanja koje se obustavlja,
+24. Tekuce poreske obaveze,
+25. Odlozene poreske obaveze,
+26. Ostale obaveze,"2,580"
+27. Subordinisani dug,"5,564"
+28. UKUPNE OBAVEZE:,"242,415"
+Kapital,IZNOS
+29. Akcijski kapital,"125,100"
+30. Emisione premije,
+31. Nerasporedena dobit,"-107,699"
+32. Dobit/gubitak tekuce godine,"2,563"
+33. Ostale rezerve,74
+34. Interesi bez kontrolnog uticaja u kapitalu,
+35. UKUPAN KAPITAL: (29. do 34.),"20,039"
+36. UKUPNI KAPITAL I OBAVEZE: (28. + 35.),"262,453"

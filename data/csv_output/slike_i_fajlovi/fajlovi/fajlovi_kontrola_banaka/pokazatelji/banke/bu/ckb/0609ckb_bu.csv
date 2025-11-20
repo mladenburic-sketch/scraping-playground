@@ -1,0 +1,47 @@
+,POZICIJA,IZNOS
+PR 1.,Prihodi od kamata,"39,133"
+,1) Depoziti,134
+,2) Hartije od vrijednosti kupljene po ugovoru o ponovnoj prodaji,
+,3) Krediti i poslovi lizinga,"37,719"
+,4) Hartije od vrijednosti koje se drze do dospijeca,16
+,5) Ostali prihodi od kamata,"1,265"
+RA 1.,Rashodi kamata,"21,711"
+,1) Depoziti,"14,317"
+,2) HoV prodate uz obavezu ponovnog otkupa,1
+,3) Uzete pozajmice - dospjele obaveze,
+,4) Obaveze po uzetim kreditima i ostalim pozajmicama,"4,596"
+,5) Subordinisani dugovi I hibridni instrumenti,594
+,6) Ostali rashodi po kamatama,"2,202"
+I.,NETO PRIHODI/RASHODI OD KAMATA (PR.1. - RA.1.),"17,423"
+II.,Troskovi za gubitke po stavkama aktive,"27,344"
+III.,NETO PRIHODI / RASHODI (I-II),"-9,922"
+PR 2.,Prihodi od naknada,"8,432"
+,1) Naknade po kreditima,"1,445"
+,2) Naknade po vanbilansnim poslovima,484
+,3) Naknade za izvrsene usluge,"5,968"
+,4) Ostale naknade,534
+RA 2.,Rashodi od naknada,"3,151"
+,1) Naknade po kreditima,7
+,2) Naknade po vanbilansnim poslovima,302
+,3) Naknade za izvrsene usluge,"1,068"
+,4) Ostale naknade,"1,774"
+IV.,NETO PRIHODI / RASHODI OD NAKNADA (PR 2. - RA 2.),"5,281"
+V.,NETO PRIHODI / RASHODI OD KAMATA I NAKNADA ( III+IV),"-4,640"
+PR 3.,Ostali prihodi,264
+,1) Prihodi iz poslovanja sa devizama (neto),190
+,2) Ponovna procjena prihoda/gubitaka iz poslovanja sa devizama (revalorizacija),-521
+,3) Prihodi po osnovu trgovine hartija od vrijednosti (neto) i dobici/gubici hartija od vrijednosti raspolozivih za prodaju i onih koje se drze do dospijeca (ukljucujuci ulaganja u kapital),
+,"4) Prihodi po osnovu trgovanja (neto) derivatima futures-forward, opcije,swap,drugim derivatima, trgovanja devizama spot-transakcije, i po osnovu kamatnih Swopova",
+,5) Neto gubici/dobici od kastodi poslova,1
+,6) Ostali prihodi,594
+RA 3.,Opsti i ostali troskovi,"10,959"
+,1) Troskovi plata,"5,752"
+,2) Troskovi poslovnog prostora i fiksne aktive,"2,640"
+,3) Ostali troskovi,"2,567"
+VI.,NETO PRIHODI / RASHODI PRIJE VANREDNIH STAVKI (V.+ PR3-RA3),"-15,335"
+PR 4.,Vanredni prihodi,400
+RA 4.,Vanredni rashodi,91
+VII.,NETO OSTALI VANREDNI PRIHODI I RASHODI (PR 4. - RA 4.),309
+VIII.,NETO PRIHODI / RASHODI POSLE VANREDNIH STAVKI (VI+VII),"-15,027"
+RA 5.,Porezi i doprinosi iz dobitka,91
+IX.,NETO DOBITAK / GUBITAK (VIII- RA 5.),"-15,117"
