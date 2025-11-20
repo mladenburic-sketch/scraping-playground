@@ -212,4 +212,5 @@ __marimo__/
 data/bankecg_izvestaji/
 output/
 certs/
+logs/
 # Allow CSV files in csv_output (will be added with -f flag for files >= 2020)

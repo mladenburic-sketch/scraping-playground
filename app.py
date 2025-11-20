@@ -6,8 +6,25 @@ from pathlib import Path
 from typing import List, Optional, cast
 from enum import Enum
 import os
+import logging
+from datetime import datetime
 
 from src.config import DOWNLOAD_FOLDER
+
+# Konfiguracija logovanja
+LOG_DIR = Path("logs")
+LOG_DIR.mkdir(exist_ok=True)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(LOG_DIR / 'app_access.log', encoding='utf-8'),
+        logging.StreamHandler()
+    ]
+)
+
+logger = logging.getLogger(__name__)
 
 # Konfiguracija stranice
 st.set_page_config(
@@ -133,6 +150,10 @@ def format_file_size(size_bytes: int) -> str:
 
 
 def main():
+    # Log pristup aplikaciji
+    logger.info("=" * 50)
+    logger.info(f"Aplikacija otvorena - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    
     st.title("📊 Analiza-bilansi banaka u Crnoj Gori")
     st.markdown("Pregled bilansa banaka u Crnoj Gori u periodu 2020-2025")
 
@@ -179,9 +200,13 @@ def main():
         csv_folder = bank_folder_map.get(bank_chooser)
         if csv_folder is None:
             st.error("Neispravan izbor")
+            logger.warning(f"Neispravan izbor banke")
             st.stop()
         assert csv_folder is not None
         csv_folder = cast(str, csv_folder)
+        
+        # Log izabranu banku
+        logger.info(f"Izabrana banka: {bank_chooser.value}")
 
         # Folder selection
         #csv_folder = st.text_input(
