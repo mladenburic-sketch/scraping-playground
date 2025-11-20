@@ -133,8 +133,8 @@ def format_file_size(size_bytes: int) -> str:
 
 
 def main():
-    st.title("📊 Analiza-bilansi stanja")
-    st.markdown("Pregled bilansa stanja banaka u periodu 2020-2025")
+    st.title("📊 Analiza-bilansi banaka u Crnoj Gori")
+    st.markdown("Pregled bilansa banaka u Crnoj Gori u periodu 2020-2025")
 
     
     class Akcija(Enum):
@@ -389,167 +389,176 @@ def main():
         #    format_func=lambda x: file_options[x],
         #    help="Izaberi CSV fajl za prikaz"
         #)
-    if df_aggregated is not None and len(df_aggregated) > 0:
-        only_year_end = st.checkbox(
-            "Prikaži samo stanje na kraju godine",
-            value=True,
-            help="Ako je uključeno, prikazuju se samo podaci za decembar (kraj svake godine)."
-        )
-
-        df_chart_source = df_aggregated.copy()
-        if only_year_end:
-            df_chart_source = df_chart_source[df_chart_source['balance_date'].dt.month == 12]
-
-        if df_chart_source.empty:
-            st.warning("Nema podataka za prikaz sa trenutno odabranim filterom (kraj godine).")
-        else:
-            st.subheader(f"Pregled svih kategorija u periodu: {df_chart_source['balance_date'].min().strftime('%d.%m.%Y')} - {df_chart_source['balance_date'].max().strftime('%d.%m.%Y')}")
-
-            # Dodaj kontrolu za izbor kategorija
-            available_categories = sorted(df_chart_source['Kategorija'].unique().tolist())
-            selected_categories = st.multiselect(
-                "Izaberi kategorije za prikaz",
-                options=available_categories,
-                default=available_categories,  # Podrazumevano sve kategorije
-                help="Možeš ukloniti ili dodati kategorije na grafikonu"
+    
+    # Kreiraj tabove
+    tab1, tab2 = st.tabs([
+        "📊 Analiza bilansa stanja",
+        "📈 Ostalo (uskoro)"
+    ])
+    
+    # Prvi tab - Analiza bilansa stanja
+    with tab1:
+        if df_aggregated is not None and len(df_aggregated) > 0:
+            only_year_end = st.checkbox(
+                "Prikaži samo stanje na kraju godine",
+                value=True,
+                help="Ako je uključeno, prikazuju se samo podaci za decembar (kraj svake godine)."
             )
-            
-            #st.write("### Vertikalni Bar Chart (Datum na X osi)")
-            
-            # Filtriraj df_chart_source prema izabranim kategorijama
-            if selected_categories:
-                df_chart = df_chart_source[df_chart_source['Kategorija'].isin(selected_categories)].copy()
+
+            df_chart_source = df_aggregated.copy()
+            if only_year_end:
+                df_chart_source = df_chart_source[df_chart_source['balance_date'].dt.month == 12]
+
+            if df_chart_source.empty:
+                st.warning("Nema podataka za prikaz sa trenutno odabranim filterom (kraj godine).")
             else:
-                st.warning("Nijedna kategorija nije izabrana. Prikazujem sve kategorije.")
-                df_chart = df_chart_source.copy()
-            
-            # Konvertuj Amount u numerički tip (ukloni zareze i druge karaktere ako postoje)
-            # Napomena: Amount je već u hiljadama u CSV-u
-            if df_chart['Amount'].dtype == 'object':
-                # Ukloni zareze i konvertuj u float
-                df_chart['Amount'] = df_chart['Amount'].astype(str).str.replace(',', '').astype(float)
-            else:
-                # Osiguraj da je numerički tip
-                df_chart['Amount'] = pd.to_numeric(df_chart['Amount'], errors='coerce').fillna(0)
-            
-            # Amount je već u hiljadama u CSV-u, samo ga konvertuj u ceo broj
-            df_chart['Amount_in_thousands'] = df_chart['Amount'].astype(int)
-            
-            # Osiguraj da balance_date je datetime tip
-            if df_chart['balance_date'].dtype != 'datetime64[ns]':
-                df_chart['balance_date'] = pd.to_datetime(df_chart['balance_date'])
-            
-            df_chart = df_chart.sort_values(['balance_date', 'Kategorija']).reset_index(drop=True)
-            
-            # Korak 4: Koristi Plotly za grupisanje barova (najbolje rešenje za grouped bars)
-            try:
-                import plotly.graph_objects as go
-                import plotly.express as px
-                
-                # Konvertuj datum u string za bolje prikazivanje
-                df_chart['datum_str'] = df_chart['balance_date'].dt.strftime('%d.%m.%Y')
-                
-                # Kreiraj grouped bar chart sa Plotly
-                fig = go.Figure()
-                
-                # Sortiraj kategorije u željenom redosledu (samo one koje su izabrane)
-                category_order = ['Aktiva', 'Obaveze', 'Kapital',]
-                colors = {'Aktiva': '#1f77b4', 'Obaveze': '#ff7f0e', 'Kapital': '#2ca02c', }
-                
-                # Filtriraj category_order da uključi samo izabrane kategorije
-                filtered_category_order = [cat for cat in category_order if cat in selected_categories] if selected_categories else category_order
-                
-                for kategorija in filtered_category_order:
-                    df_cat = df_chart[df_chart['Kategorija'] == kategorija].sort_values('balance_date')
-                    if len(df_cat) > 0:
-                        fig.add_trace(go.Bar(
-                            x=df_cat['datum_str'],
-                            y=df_cat['Amount_in_thousands'],
-                            name=kategorija,
-                            marker_color=colors.get(kategorija, '#808080')  # Siva ako kategorija nema definisanu boju
-                        ))
-                
-                fig.update_layout(
-                    title='Pregled kategorija po datumu',
-                    xaxis_title='Datum',
-                    yaxis_title='Iznos (u hiljadama)',
-                    barmode='group',  # Ovo je ključno - grupiše barove jedan pored drugog
-                    xaxis=dict(tickangle=-45),
-                    height=500,
-                    showlegend=True
+                st.subheader(f"Pregled svih kategorija u periodu: {df_chart_source['balance_date'].min().strftime('%d.%m.%Y')} - {df_chart_source['balance_date'].max().strftime('%d.%m.%Y')}")
+
+                # Dodaj kontrolu za izbor kategorija
+                available_categories = sorted(df_chart_source['Kategorija'].unique().tolist())
+                selected_categories = st.multiselect(
+                    "Izaberi kategorije za prikaz",
+                    options=available_categories,
+                    default=available_categories,  # Podrazumevano sve kategorije
+                    help="Možeš ukloniti ili dodati kategorije na grafikonu"
                 )
                 
-                st.plotly_chart(fig, use_container_width=True)
+                #st.write("### Vertikalni Bar Chart (Datum na X osi)")
                 
-            except ImportError:
-                st.warning("Plotly nije instaliran. Koristim st.bar_chart kao fallback.")
-                # Fallback: st.bar_chart sa pivot tabelom
-                pivot_df = df_chart.pivot_table(
-                    index='balance_date',
-                    columns='Kategorija',
-                    values='Amount_in_thousands',
-                    aggfunc='sum'
-                ).fillna(0)
-                pivot_df = pivot_df.sort_index()
-                category_order = ['Aktiva', 'Obaveze', 'Kapital']
-                existing_categories = [cat for cat in category_order if cat in pivot_df.columns]
-                if existing_categories:
-                    pivot_df = pivot_df[existing_categories]
-                st.bar_chart(pivot_df, height=400)
-
-            st.divider()
-        
-        # Drugi graf - sa drugim kategorijama (analogno prvom)
-        if df is not None and "Pozicija" in df.columns and len(df_aggregated) > 0:
-            class Kategorija_2(Enum):
-                KREDITI_KLIJENATA = "Krediti klijenata"
-                HoV = "Hartije od vrijednosti"
-                DEPOZITI_KLIJENATA = "Depoziti klijenata"
-
-            cat_mapper_2 = {
-                Kategorija_2.KREDITI_KLIJENATA: ["2.b. Krediti i potrazivanja od klijenata","2.a. Krediti i potrazivanja od banaka"],
-                Kategorija_2.HoV: ["2.c. Hartije od vrijednosti","3.c. Hartije od vrijednosti","4.c. Hartije od vrijednosti"],
-                Kategorija_2.DEPOZITI_KLIJENATA: "17.b. Depoziti klijenata",
-            }
-            
-            # Učitaj sve kategorije za drugi graf (analogno prvom)
-            all_categories_data_2 = []
-            
-            for kategorija_enum_2, pozicije_values in cat_mapper_2.items():
-                for pozicija_value_2 in (pozicije_values if isinstance(pozicije_values, list) else [pozicije_values]):
-                    df_filtered_2 = df[df["Pozicija"] == pozicija_value_2].copy()
-                    
-                    if len(df_filtered_2) > 0 and 'Amount' in df_filtered_2.columns:
-                        # Konvertuj Amount u numerički tip pre agregacije
-                        if df_filtered_2['Amount'].dtype == 'object':
-                            df_filtered_2['Amount'] = df_filtered_2['Amount'].astype(str).str.replace(',', '').astype(float)
-                        else:
-                            df_filtered_2['Amount'] = pd.to_numeric(df_filtered_2['Amount'], errors='coerce').fillna(0)
-                        
-                        # Agregiraj po datumu
-                        df_agg_2 = df_filtered_2.groupby('balance_date')['Amount'].sum().reset_index()
-                        # Dodaj kolonu sa imenom kategorije (koristi Enum vrednost)
-                        df_agg_2['Kategorija'] = kategorija_enum_2.value
-                        all_categories_data_2.append(df_agg_2)
-            
-            # Kombinuj sve kategorije u jedan DataFrame
-            if all_categories_data_2:
-                df_aggregated_2 = pd.concat(all_categories_data_2, ignore_index=True)
-
-                df_chart_2_source = df_aggregated_2.copy()
-                if only_year_end:
-                    df_chart_2_source = df_chart_2_source[df_chart_2_source['balance_date'].dt.month == 12]
-
-                if df_chart_2_source.empty:
-                    st.warning("Nema podataka za prikaz kredita i depozita sa trenutno odabranim filterom (kraj godine).")
+                # Filtriraj df_chart_source prema izabranim kategorijama
+                if selected_categories:
+                    df_chart = df_chart_source[df_chart_source['Kategorija'].isin(selected_categories)].copy()
                 else:
-                    ratio_source = df_chart_2_source.copy()
-                    if ratio_source['Amount'].dtype == 'object':
-                        ratio_source['Amount'] = ratio_source['Amount'].astype(str).str.replace(',', '').astype(float)
+                    st.warning("Nijedna kategorija nije izabrana. Prikazujem sve kategorije.")
+                    df_chart = df_chart_source.copy()
+                
+                # Konvertuj Amount u numerički tip (ukloni zareze i druge karaktere ako postoje)
+                # Napomena: Amount je već u hiljadama u CSV-u
+                if df_chart['Amount'].dtype == 'object':
+                    # Ukloni zareze i konvertuj u float
+                    df_chart['Amount'] = df_chart['Amount'].astype(str).str.replace(',', '').astype(float)
+                else:
+                    # Osiguraj da je numerički tip
+                    df_chart['Amount'] = pd.to_numeric(df_chart['Amount'], errors='coerce').fillna(0)
+                
+                # Amount je već u hiljadama u CSV-u, samo ga konvertuj u ceo broj
+                df_chart['Amount_in_thousands'] = df_chart['Amount'].astype(int)
+                
+                # Osiguraj da balance_date je datetime tip
+                if df_chart['balance_date'].dtype != 'datetime64[ns]':
+                    df_chart['balance_date'] = pd.to_datetime(df_chart['balance_date'])
+                
+                df_chart = df_chart.sort_values(['balance_date', 'Kategorija']).reset_index(drop=True)
+                
+                # Korak 4: Koristi Plotly za grupisanje barova (najbolje rešenje za grouped bars)
+                try:
+                    import plotly.graph_objects as go
+                    import plotly.express as px
+                    
+                    # Konvertuj datum u string za bolje prikazivanje
+                    df_chart['datum_str'] = df_chart['balance_date'].dt.strftime('%d.%m.%Y')
+                    
+                    # Kreiraj grouped bar chart sa Plotly
+                    fig = go.Figure()
+                    
+                    # Sortiraj kategorije u željenom redosledu (samo one koje su izabrane)
+                    category_order = ['Aktiva', 'Obaveze', 'Kapital',]
+                    colors = {'Aktiva': '#1f77b4', 'Obaveze': '#ff7f0e', 'Kapital': '#2ca02c', }
+                    
+                    # Filtriraj category_order da uključi samo izabrane kategorije
+                    filtered_category_order = [cat for cat in category_order if cat in selected_categories] if selected_categories else category_order
+                    
+                    for kategorija in filtered_category_order:
+                        df_cat = df_chart[df_chart['Kategorija'] == kategorija].sort_values('balance_date')
+                        if len(df_cat) > 0:
+                            fig.add_trace(go.Bar(
+                                x=df_cat['datum_str'],
+                                y=df_cat['Amount_in_thousands'],
+                                name=kategorija,
+                                marker_color=colors.get(kategorija, '#808080')  # Siva ako kategorija nema definisanu boju
+                            ))
+                    
+                    fig.update_layout(
+                        title='Pregled kategorija po datumu',
+                        xaxis_title='Datum',
+                        yaxis_title='Iznos (u hiljadama)',
+                        barmode='group',  # Ovo je ključno - grupiše barove jedan pored drugog
+                        xaxis=dict(tickangle=-45),
+                        height=500,
+                        showlegend=True
+                    )
+                    
+                    st.plotly_chart(fig, use_container_width=True)
+                    
+                except ImportError:
+                    st.warning("Plotly nije instaliran. Koristim st.bar_chart kao fallback.")
+                    # Fallback: st.bar_chart sa pivot tabelom
+                    pivot_df = df_chart.pivot_table(
+                        index='balance_date',
+                        columns='Kategorija',
+                        values='Amount_in_thousands',
+                        aggfunc='sum'
+                    ).fillna(0)
+                    pivot_df = pivot_df.sort_index()
+                    category_order = ['Aktiva', 'Obaveze', 'Kapital']
+                    existing_categories = [cat for cat in category_order if cat in pivot_df.columns]
+                    if existing_categories:
+                        pivot_df = pivot_df[existing_categories]
+                    st.bar_chart(pivot_df, height=400)
+
+                st.divider()
+            
+            # Drugi graf - sa drugim kategorijama (analogno prvom)
+            if df is not None and "Pozicija" in df.columns and len(df_aggregated) > 0:
+                class Kategorija_2(Enum):
+                    KREDITI_KLIJENATA = "Krediti klijenata"
+                    HoV = "Hartije od vrijednosti"
+                    DEPOZITI_KLIJENATA = "Depoziti klijenata"
+
+                cat_mapper_2 = {
+                    Kategorija_2.KREDITI_KLIJENATA: ["2.b. Krediti i potrazivanja od klijenata","2.a. Krediti i potrazivanja od banaka"],
+                    Kategorija_2.HoV: ["2.c. Hartije od vrijednosti","3.c. Hartije od vrijednosti","4.c. Hartije od vrijednosti"],
+                    Kategorija_2.DEPOZITI_KLIJENATA: "17.b. Depoziti klijenata",
+                }
+                
+                # Učitaj sve kategorije za drugi graf (analogno prvom)
+                all_categories_data_2 = []
+                
+                for kategorija_enum_2, pozicije_values in cat_mapper_2.items():
+                    for pozicija_value_2 in (pozicije_values if isinstance(pozicije_values, list) else [pozicije_values]):
+                        df_filtered_2 = df[df["Pozicija"] == pozicija_value_2].copy()
+                        
+                        if len(df_filtered_2) > 0 and 'Amount' in df_filtered_2.columns:
+                            # Konvertuj Amount u numerički tip pre agregacije
+                            if df_filtered_2['Amount'].dtype == 'object':
+                                df_filtered_2['Amount'] = df_filtered_2['Amount'].astype(str).str.replace(',', '').astype(float)
+                            else:
+                                df_filtered_2['Amount'] = pd.to_numeric(df_filtered_2['Amount'], errors='coerce').fillna(0)
+                            
+                            # Agregiraj po datumu
+                            df_agg_2 = df_filtered_2.groupby('balance_date')['Amount'].sum().reset_index()
+                            # Dodaj kolonu sa imenom kategorije (koristi Enum vrednost)
+                            df_agg_2['Kategorija'] = kategorija_enum_2.value
+                            all_categories_data_2.append(df_agg_2)
+                
+                # Kombinuj sve kategorije u jedan DataFrame
+                if all_categories_data_2:
+                    df_aggregated_2 = pd.concat(all_categories_data_2, ignore_index=True)
+
+                    df_chart_2_source = df_aggregated_2.copy()
+                    if only_year_end:
+                        df_chart_2_source = df_chart_2_source[df_chart_2_source['balance_date'].dt.month == 12]
+
+                    if df_chart_2_source.empty:
+                        st.warning("Nema podataka za prikaz kredita i depozita sa trenutno odabranim filterom (kraj godine).")
                     else:
-                        ratio_source['Amount'] = pd.to_numeric(ratio_source['Amount'], errors='coerce').fillna(0)
-                    ratio_source['Amount_in_thousands'] = ratio_source['Amount'].astype(int)
-                    st.subheader(f"Pregled kredita i depozita u periodu: {df_chart_2_source['balance_date'].min().strftime('%d.%m.%Y')} - {df_chart_2_source['balance_date'].max().strftime('%d.%m.%Y')}")
+                        ratio_source = df_chart_2_source.copy()
+                        if ratio_source['Amount'].dtype == 'object':
+                            ratio_source['Amount'] = ratio_source['Amount'].astype(str).str.replace(',', '').astype(float)
+                        else:
+                            ratio_source['Amount'] = pd.to_numeric(ratio_source['Amount'], errors='coerce').fillna(0)
+                        ratio_source['Amount_in_thousands'] = ratio_source['Amount'].astype(int)
+                        st.subheader(f"Pregled kredita i depozita u periodu: {df_chart_2_source['balance_date'].min().strftime('%d.%m.%Y')} - {df_chart_2_source['balance_date'].max().strftime('%d.%m.%Y')}")
                     
                     # Dodaj kontrolu za izbor kategorija (analogno prvom)
                     available_categories_2 = sorted(df_chart_2_source['Kategorija'].unique().tolist())
@@ -696,7 +705,15 @@ def main():
             else:
                 st.warning("Nema podataka za prikaz drugog grafikona.")
     
-    # Glavni sadržaj
+    # Drugi tab - Placeholder za buduće funkcionalnosti
+    with tab2:
+        st.info("Ovo je placeholder za buduće funkcionalnosti aplikacije.")
+        st.markdown("### Uskoro će biti dostupno:")
+        st.markdown("- Dodatne analize")
+        st.markdown("- Eksport podataka")
+        st.markdown("- Dodatni izvještaji")
+    
+    # Glavni sadržaj (komentarisano)
     #if selected_file_idx is not None:
     #    selected_file = filtered_files_sorted[selected_file_idx]
         
