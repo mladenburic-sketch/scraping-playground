@@ -21,13 +21,16 @@ st.set_page_config(
 CSV_FOLDER = "data/csv_output/slike_i_fajlovi/fajlovi/fajlovi_kontrola_banaka/pokazatelji/banke"
 
 
-@st.cache_data
 def get_all_csv_files(csv_folder: str = CSV_FOLDER) -> List[Path]:
     """Pronalazi sve CSV fajlove u folderu (rekurzivno)."""
     csv_dir = Path(csv_folder)
+    # Pokušaj relativno od root-a ako ne postoji
+    if not csv_dir.exists():
+        csv_dir = Path(".") / csv_folder
     if not csv_dir.exists():
         return []
-    return list(csv_dir.rglob("*.csv"))
+    csv_files = list(csv_dir.rglob("*.csv"))
+    return csv_files
 
 
 def load_csv_file(
@@ -174,11 +177,36 @@ def main():
         # Koristi folder iz mape banaka
         # csv_folder = CSV_FOLDER
         
+        # Debug: provjeri da li folder postoji
+        test_path = Path(csv_folder)
+        if not test_path.exists():
+            st.error(f"❌ Folder ne postoji: {csv_folder}")
+            st.error(f"Trenutna radna direktorij: {Path.cwd()}")
+            # Pokušaj da pronađeš folder relativno od root-a
+            alt_paths = [
+                Path(".") / csv_folder,
+                Path("data") / csv_folder.replace("data/", ""),
+            ]
+            for alt in alt_paths:
+                if alt.exists():
+                    st.info(f"Pronađen folder na alternativnoj putanji: {alt}")
+                    csv_folder = str(alt)
+                    break
+            else:
+                st.stop()
+        
         # Učitaj sve CSV fajlove
         csv_files = get_all_csv_files(csv_folder)
         
         if not csv_files:
             st.warning(f"Nema CSV fajlova u folderu: {csv_folder}")
+            st.info(f"Folder postoji: {Path(csv_folder).exists()}")
+            st.info(f"Apsolutna putanja: {Path(csv_folder).absolute()}")
+            # Listaj sve CSV fajlove u parent folderu
+            parent = Path(csv_folder).parent
+            if parent.exists():
+                all_csvs = list(parent.rglob("*.csv"))
+                st.info(f"Pronađeno {len(all_csvs)} CSV fajlova u parent folderu: {parent}")
             st.stop()
         
         #st.success(f"Pronađeno {len(csv_files)} CSV fajlova")
