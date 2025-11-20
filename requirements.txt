@@ -1,0 +1,8 @@
+requests
+beautifulsoup4
+certifi
+playwright
+pdfplumber
+streamlit
+pandas
+plotly

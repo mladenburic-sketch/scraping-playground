@@ -1,0 +1,9 @@
+# Python
+scrapingPlayground/
+__pycache__/
+*.pyc
+
+# Podaci i konfiguracija
+.env
+data/
+output/
