@@ -134,13 +134,21 @@ def format_file_size(size_bytes: int) -> str:
 
 def main():
     st.title("📊 Analiza-bilansi stanja")
-    st.markdown("Pregled bilansa stanja i uspjeha banaka u periodu 2020-2025")
+    st.markdown("Pregled bilansa stanja banaka u periodu 2020-2025")
 
     
     class Akcija(Enum):
         PBCG = "Prva banka CG"
         CKB = "Crnogorska komercijalna banka"
         NLB = "NLB Montenegro banka"
+        UCB = "Universal Capital banka"
+        HB = "Hipotekarna banka"
+        ADR = "Adriatic banka"
+        ADK = "Addiko banka"
+        LOV = "Lovćen banka"
+        ERB = "Erste banka"
+        ZAP = "Zapadna banka"
+        ZIR = "Ziraat banka"
 
     
     # Sidebar za navigaciju i filtere
@@ -158,6 +166,14 @@ def main():
             Akcija.PBCG: "data/csv_output/slike_i_fajlovi/fajlovi/fajlovi_kontrola_banaka/pokazatelji/banke/bs/nik",
             Akcija.CKB: "data/csv_output/slike_i_fajlovi/fajlovi/fajlovi_kontrola_banaka/pokazatelji/banke/bs/ckb",
             Akcija.NLB: "data/csv_output/slike_i_fajlovi/fajlovi/fajlovi_kontrola_banaka/pokazatelji/banke/bs/mnb",
+            Akcija.UCB: "data/csv_output/slike_i_fajlovi/fajlovi/fajlovi_kontrola_banaka/pokazatelji/banke/bs/ffb",
+            Akcija.HB: "data/csv_output/slike_i_fajlovi/fajlovi/fajlovi_kontrola_banaka/pokazatelji/banke/bs/hip",
+            Akcija.ADR: "data/csv_output/slike_i_fajlovi/fajlovi/fajlovi_kontrola_banaka/pokazatelji/banke/bs/azm",
+            Akcija.ADK: "data/csv_output/slike_i_fajlovi/fajlovi/fajlovi_kontrola_banaka/pokazatelji/banke/bs/hyp",
+            Akcija.LOV: "data/csv_output/slike_i_fajlovi/fajlovi/fajlovi_kontrola_banaka/pokazatelji/banke/bs/lov",
+            Akcija.ERB: "data/csv_output/slike_i_fajlovi/fajlovi/fajlovi_kontrola_banaka/pokazatelji/banke/bs/opp",
+            Akcija.ZAP: "data/csv_output/slike_i_fajlovi/fajlovi/fajlovi_kontrola_banaka/pokazatelji/banke/bs/zap",
+            Akcija.ZIR: "data/csv_output/slike_i_fajlovi/fajlovi/fajlovi_kontrola_banaka/pokazatelji/banke/bs/zir",
         }
 
         csv_folder = bank_folder_map.get(bank_chooser)
