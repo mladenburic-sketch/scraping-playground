@@ -66,12 +66,19 @@ def load_csv_file(
                     
                     # Preimenuj AKTIVA ili IZNOS kolonu u Amount pre nego što preimenujemo prvu kolonu u Pozicija
                     # (ako postoji kolona 'AKTIVA' ili 'IZNOS' koja sadrži iznose)
-                    if 'AKTIVA' in df.columns:
-                        df = df.rename(columns={'AKTIVA': 'Amount'})
-                    elif 'IZNOS' in df.columns:
+                    # Prioritet: IZNOS > AKTIVA (jer IZNOS je verovatnije tačan naziv)
+                    if 'IZNOS' in df.columns:
                         df = df.rename(columns={'IZNOS': 'Amount'})
+                        # Ukloni AKTIVA ako postoji (da ne bude duplikat)
+                        if 'AKTIVA' in df.columns:
+                            df = df.drop(columns=['AKTIVA'])
+                    elif 'AKTIVA' in df.columns:
+                        df = df.rename(columns={'AKTIVA': 'Amount'})
                     
                     df = df.rename(columns={first_col: "Pozicija"})
+                    
+                    # Osiguraj da nema duplikata kolona
+                    df = df.loc[:, ~df.columns.duplicated()]
                 
                 #df = df.fillna({"Amount": 0})
                 return df
@@ -92,12 +99,19 @@ def load_csv_file(
             df = df[~df[first_col].isin(section_headers)]
             
             # Preimenuj AKTIVA ili IZNOS kolonu u Amount pre nego što preimenujemo prvu kolonu u Pozicija
-            if 'AKTIVA' in df.columns:
-                df = df.rename(columns={'AKTIVA': 'Amount'})
-            elif 'IZNOS' in df.columns:
+            # Prioritet: IZNOS > AKTIVA (jer IZNOS je verovatnije tačan naziv)
+            if 'IZNOS' in df.columns:
                 df = df.rename(columns={'IZNOS': 'Amount'})
+                # Ukloni AKTIVA ako postoji (da ne bude duplikat)
+                if 'AKTIVA' in df.columns:
+                    df = df.drop(columns=['AKTIVA'])
+            elif 'AKTIVA' in df.columns:
+                df = df.rename(columns={'AKTIVA': 'Amount'})
             
             df = df.rename(columns={first_col: "Pozicija"})
+            
+            # Osiguraj da nema duplikata kolona
+            df = df.loc[:, ~df.columns.duplicated()]
         
         return df
     except Exception as e:
@@ -212,6 +226,28 @@ def main():
                     continue
 
             if files_list:
+                # Osiguraj da svi DataFrames imaju iste kolone i nema duplikata
+                # Prvo, ukloni duplikate kolona iz svakog DataFrame-a
+                for i, t_df in enumerate(files_list):
+                    files_list[i] = t_df.loc[:, ~t_df.columns.duplicated()]
+                
+                # Zatim, prikupi sve jedinstvene kolone iz svih DataFrames
+                all_columns = set()
+                for t_df in files_list:
+                    all_columns.update(t_df.columns)
+                
+                # Konvertuj u listu i sortiraj za konzistentnost
+                all_columns = sorted(list(all_columns))
+                
+                # Osiguraj da svi DataFrames imaju iste kolone
+                for i, t_df in enumerate(files_list):
+                    # Dodaj nedostajuće kolone sa None vrednostima
+                    for col in all_columns:
+                        if col not in t_df.columns:
+                            t_df[col] = None
+                    # Reorder kolone da budu konzistentne
+                    files_list[i] = t_df[all_columns]
+                
                 df = pd.concat(files_list, ignore_index=True)
             else:
                 st.error("Nema CSV fajlova u folderu")
