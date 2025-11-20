@@ -51,9 +51,9 @@ def load_csv_file(
             try:
                 df = pd.read_csv(csv_path, encoding=encoding, **read_kwargs)
                 
-                # Preskoči fajlove koji imaju kolonu "R. br."
-                #if df is not None and "R. br." in df.columns:
-                #    return None
+                # Ukloni "R. br." kolonu ako postoji (ne preskači fajl, samo ukloni kolonu)
+                if df is not None and "R. br." in df.columns:
+                    df = df.drop(columns=['R. br.'])
                 
                 # Ukloni sekcijske headere (Aktiva, Obaveze, Kapital) koji se pojavljuju kao redovi
                 # Ovi redovi imaju istu vrednost u prvoj koloni kao header
@@ -88,9 +88,9 @@ def load_csv_file(
         # Ako ništa ne radi, probaj bez encoding-a
         df = pd.read_csv(csv_path, **read_kwargs)
         
-        # Preskoči fajlove koji imaju kolonu "R. br."
+        # Ukloni "R. br." kolonu ako postoji (ne preskači fajl, samo ukloni kolonu)
         if df is not None and "R. br." in df.columns:
-            return None
+            df = df.drop(columns=['R. br.'])
         
         # Ukloni sekcijske headere i ovde
         if df is not None and len(df.columns) > 0:
