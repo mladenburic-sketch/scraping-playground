@@ -1,0 +1,45 @@
+Aktiva,IZNOS
+1. Novcana sredstva i racuni depozita kod centralnih banaka,"26,416"
+2. Krediti i potrazivanja od banaka,"5,838"
+3. Krediti i potrazivanja od klijenata,"175,471"
+4. Sredstva namijenjena prodaji,"2,536"
+5. Finansijska sredstva koja se drze za trgovanje,291
+6. Ostala sredstva koja se vode po fer vrijednosti kroz bilans uspjeha,
+7. Derivatna finansijska sredstva kao instrument zastite,
+8. Investicione hartije od vrijednosti,"6,426"
+8.a. - raspolozive za prodaju,
+8.b. - koje se drze do dospijeca,"6,426"
+9. Investicije u pridruzena preduzeca i zajednicke poduhvate po metodi kapitala,
+10. Investicije u zavisna preduzeca,"3,252"
+11. Investicione nekretnine/nepokretnosti,
+"12. Nekretnine, postrojenja i oprema","2,169"
+13. Nematerijalna sredstva,48
+14. Tekuca poreska sredstva,
+15. Odlozena poreska sredstva,128
+16. Ostala finansijska potrazivanja,"1,305"
+17. Ostala poslovna potrazivanja,"30,843"
+18. UKUPNA SREDSTVA:,"254,724"
+Obaveze,IZNOS
+19. Depoziti banaka,"1,835"
+20. Depoziti klijenata,"206,016"
+21. Pozajmljena sredstva od banaka,45
+22. Pozajmljena sredstva od ostalih klijenata,"2,701"
+23. Finansijske obaveze koje se drze za trgovanje,
+24. Finansijske obaveze koje se vode po fer vrijednosti kroz bilans uspjeha,
+25. Derivatne finansijske obaveze kao instrument zastite,
+26. Izdate duznicke hartije od vrijednosti,
+27. Rezerve,190
+28. Tekuce poreske obaveze,
+29. Odlozene poreske obaveze,
+30. Ostale obaveze,"3,526"
+31. Subordinisani dug,"9,060"
+32. UKUPNE OBAVEZE:,"223,373"
+Kapital,IZNOS
+33. Akcijski kapital,"55,428"
+34. Emisione premije,
+35. Nerasporedjena dobit,"-34,514"
+36. Dobit/gubitak tekuce godine,"1,119"
+37. Ostale rezerve,"9,319"
+38. Interesi bez kontrolnog uticaja u kapitalu,
+39. UKUPAN KAPITAL: (33. do 38.),"31,351"
+40. UKUPNI KAPITAL I OBAVEZE: (32. + 39.),"254,724"

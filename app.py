@@ -51,9 +51,9 @@ def load_csv_file(
             try:
                 df = pd.read_csv(csv_path, encoding=encoding, **read_kwargs)
                 
-                # Ukloni "R. br." kolonu ako postoji (ne preskači fajl, samo ukloni kolonu)
+                # Preskoči fajlove koji imaju kolonu "R. br."
                 if df is not None and "R. br." in df.columns:
-                    df = df.drop(columns=['R. br.'])
+                    return None
                 
                 # Ukloni sekcijske headere (Aktiva, Obaveze, Kapital) koji se pojavljuju kao redovi
                 # Ovi redovi imaju istu vrednost u prvoj koloni kao header
@@ -88,9 +88,9 @@ def load_csv_file(
         # Ako ništa ne radi, probaj bez encoding-a
         df = pd.read_csv(csv_path, **read_kwargs)
         
-        # Ukloni "R. br." kolonu ako postoji (ne preskači fajl, samo ukloni kolonu)
+        # Preskoči fajlove koji imaju kolonu "R. br."
         if df is not None and "R. br." in df.columns:
-            df = df.drop(columns=['R. br.'])
+            return None
         
         # Ukloni sekcijske headere i ovde
         if df is not None and len(df.columns) > 0:
@@ -503,7 +503,7 @@ def main():
                     else:
                         ratio_source['Amount'] = pd.to_numeric(ratio_source['Amount'], errors='coerce').fillna(0)
                     ratio_source['Amount_in_thousands'] = ratio_source['Amount'].astype(int)
-                    st.subheader(f"Pregled kredita i depozita u periodi: {df_chart_2_source['balance_date'].min()} - {df_chart_2_source['balance_date'].max()}")
+                    st.subheader(f"Pregled kredita i depozita u periodu: {df_chart_2_source['balance_date'].min().strftime('%d.%m.%Y')} - {df_chart_2_source['balance_date'].max().strftime('%d.%m.%Y')}")
                     
                     # Dodaj kontrolu za izbor kategorija (analogno prvom)
                     available_categories_2 = sorted(df_chart_2_source['Kategorija'].unique().tolist())
